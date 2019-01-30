@@ -89,19 +89,18 @@ class PMachine(FiniteStateMachine):
             self.allitems.add(req.get_precond())
             self.allitems.add(req.get_pstcond())
 
-            print("{} --> {}".format(req.get_precond(), req.get_pstcond()))
+            #print("{} --> {}".format(req.get_precond(), req.get_pstcond()))
 
-        print("{}".format(self.pre2pst))
-        print("{}".format(self.pst2pre))
-        print("{}".format(self.allitems))
-
+        #print("{}".format(self.pre2pst))
+        #print("{}".format(self.pst2pre))
+        #print("{}".format(self.allitems))
 
     def s2_find_initial_ready(self):
 
         for item in self.allitems:
             if len(self.pst2pre.get(item, [])) == 0:
                 self.ready_list.append(item)
-                print("Initial ready item ={}".format(item))
+                # print("Initial ready item ={}".format(item))
 
 
 

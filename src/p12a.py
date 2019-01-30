@@ -35,7 +35,7 @@ class PMachine(FiniteStateMachine):
         self.curidx = -3
 
         self.generation = 0
-        self.max_generation = 1000000
+        self.max_generation = 20
 
         self.is_test = False
 

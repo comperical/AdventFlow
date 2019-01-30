@@ -57,9 +57,6 @@ class PMachine(FiniteStateMachine):
         for c in str(rsum):
             self.recipes.append(int(c))
 
-
-
-
     def s6_advance_elves(self):
         
         def newpos(p):

@@ -13,7 +13,7 @@ from p21a import Instruction
 
 def get_result_alternate():
 
-    mysim = elf_code_sim()
+    mysim = elf_code_sim(yieldfinal=True)
     foundokay = False
     rlog = {}
 
@@ -40,12 +40,12 @@ def get_result_alternate():
         if r4val not in r4map:
             r4map[r4val] = len(r4map)
             lastobserve = r4val
-            print("Last observed r4 is {}".format(r4val))
+            #print("Last observed r4 is {}".format(r4val))
 
     return lastobserve
 
 
-def elf_code_sim():
+def elf_code_sim(yieldfinal=False):
 
     r0 = 0
     r1 = 0
@@ -78,8 +78,10 @@ def elf_code_sim():
         if 256 > r3:
 
             # This is the line that matters, in terms of the actual solution output.
-            # the solution will be the LATEST value of r4 that appears here, before a cycle occurs.
-            yield (28, [r0, r1, r2, r3, r4, r5])
+            # the solution will be the LATEST value of r4 that appears here, before a cycle occurs.            
+            if yieldfinal: 
+                yield (28, [r0, r1, r2, r3, r4, r5])
+
             if r4 == r0:
                 return (-1, [])
 
@@ -111,10 +113,8 @@ class PMachine(FiniteStateMachine):
             "HLP" : "F:PT",
             "IIP" : "HLP",
             "PT" : "T:SC",
-            "CAS" : "CSL",
-            "CSL" : "T:SC",
-            "MSL" : "PT"
-
+            "CAS" : "HESC",
+            "HESC" : "F:PT"
         }
         """
         
@@ -136,9 +136,10 @@ class PMachine(FiniteStateMachine):
 
         self.hash_log = set()
 
-    def get_result(self):
-        return self.registers[4]
+        self.sim_checks = 0
 
+    def get_result(self):
+        return get_result_alternate()
 
     def s1_init_machine(self):
 
@@ -162,8 +163,6 @@ class PMachine(FiniteStateMachine):
         #for idx, inst in enumerate(self.instructions):
         #    print("{} --> {}".format(idx, inst))
 
-
-
     def s2_hit_log_point(self):
 
         return self.instr_ptr in self.log_points
@@ -177,7 +176,9 @@ class PMachine(FiniteStateMachine):
         #print("Simulator gave: IP={}, regs={}".format(instpt, regs))
         #print("Machine    has: IP={}, regs={}".format(self.instr_ptr, self.registers))
 
-        #assert self.instr_ptr == instpt and self.registers == regs
+        assert self.instr_ptr == instpt and self.registers == regs
+
+        self.sim_checks += 1
 
 
     def s4_program_terminates(self):
@@ -188,13 +189,13 @@ class PMachine(FiniteStateMachine):
         self.registers[self.ip_binding] = self.instr_ptr
 
     def s7_execute_instruction(self):
-        logline = "ip={} {} ".format(self.instr_ptr, str(self.registers))
+        #logline = "ip={} {} ".format(self.instr_ptr, str(self.registers))
 
         curinst = self.instructions[self.instr_ptr]
-        logline += str(curinst)
+        #logline += str(curinst)
 
         curinst.execute(self.registers)
-        logline += " " + str(self.registers)
+        #logline += " " + str(self.registers)
 
         #print(logline)
 
@@ -205,24 +206,12 @@ class PMachine(FiniteStateMachine):
     def s12_increment_inst_ptr(self):
         self.instr_ptr += 1
 
+    def s16_have_enough_sim_checks(self):
 
-    def compute_state_hash(self):
-        return hash(tuple(self.registers))
+        if self.sim_checks % 10 == 0:
+            print("Have {} simulator checks".format(self.sim_checks))
 
-    def s16_check_state_log(self):
-        shash = self.compute_state_hash()
-        if shash in self.hash_log:
-            print("Success, found state cycle")
-
-        return shash in self.hash_log
-
-    def s18_mark_state_log(self):
-        shash = self.compute_state_hash()
-        self.hash_log.add(shash)
-
-        if len(self.hash_log) % 100 == 0:
-            print("Hash Log size is {}".format(len(self.hash_log)))
-
+        return self.sim_checks > 200
 
     def s30_success_complete(self):
         pass

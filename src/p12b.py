@@ -101,7 +101,7 @@ class PMachine(FiniteStateMachine):
                 assert self.is_test
                 self.plants_grow[code] = False
 
-        print(self.plants_grow)
+        # print(self.plants_grow)
 
     def s1_init_machine(self):
 

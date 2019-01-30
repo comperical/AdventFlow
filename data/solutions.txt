@@ -1,0 +1,32 @@
+#1: 474, 137041
+#2: 7134, kbqwtcvzhmhpoelrnaxydifyb
+#3: 119551, 1124
+4: 72925, 49137
+5: 9238, 4052
+6: 3293, 45176
+7: GKPTSLUXBIJMNCADFOVHEWYQRZ, 920
+8: 47112, 28237
+# This is okay, it just runs kind of slow.
+9: 408679, 3443939356
+# Note: for this problem, the answer is printed out to the console using ASCII art based on the state of the machine.
+# User must read it off from the console. I hard-coded the result here so the tests would pass.
+10: FBHKLEAG, 10009
+11: (21,68); (90,201,15)
+# This is okay, had a bug before but now fine.
+12: 4110, 2650000000466
+13: (143,43) ; (116,125)
+# 14b takes a long time, about 5 minutes
+14: 1411383621, 20177474
+# See README comments about annoying problem 15b
+15: 222831
+16: 588, 627
+17: 37858, 30410
+18: 536370, 190512
+19: 1764, 18992484
+20: 3835, 8520
+21: 103548, 14256686
+22: 7380, 1013
+23: 497, 85761543
+24: 26937, 4893
+# There is only one puzzle for the 25th
+25: 310
