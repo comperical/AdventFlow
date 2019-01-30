@@ -35,7 +35,7 @@ class PMachine(FiniteStateMachine):
 
 
     def get_result(self):
-        return self.compute_resource_value()
+        return self.final_result
 
     def compute_resource_value(self):
         rcounter = Counter([c for row in self.geography for c in row])
@@ -164,9 +164,11 @@ class PMachine(FiniteStateMachine):
 
         assert len(timevals) == self.minute - logtime
 
+        """
         print("TimeVals: ")
         for tv in timevals:
             print(str(tv))
+        """
 
         remaintime = 1000000000 - self.minute
         remaintime = remaintime % len(timevals)

@@ -84,8 +84,7 @@ class PMachine(FiniteStateMachine):
         self.iteration = 0
 
 
-    def get_result(self):
-        
+    def get_both_results(self):
         ybnd = boundaries([cpt[1] for cpt in self.clays])
 
         def okayy(pt):
@@ -95,6 +94,9 @@ class PMachine(FiniteStateMachine):
         basics = [pt for pt in self.board if okayy(pt)]
         settld = [pt for pt, bv in self.board.items() if okayy(pt) and bv == 7]
         return len(basics), len(settld)
+
+    def get_result(self):
+        return self.get_both_results()[0]
 
     def s1_init_machine(self):
         infile = 'p17'

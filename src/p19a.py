@@ -6,7 +6,7 @@ import utility as U
 from finite_state import *
 
 # Re-use function opcodes
-import p16b
+import p16a
 
 class Instruction:
 
@@ -14,7 +14,7 @@ class Instruction:
 
         toks = istr.split()
         self.opcode = toks[0].strip()
-        assert self.opcode in p16b.MAIN_OP_MAP
+        assert self.opcode in p16a.MAIN_OP_MAP
 
         self.aval = int(toks[1])
         self.bval = int(toks[2])
@@ -25,7 +25,7 @@ class Instruction:
 
 
     def execute(self, registers):
-        opfunc = p16b.MAIN_OP_MAP[self.opcode]
+        opfunc = p16a.MAIN_OP_MAP[self.opcode]
         newc = opfunc(registers, self.aval, self.bval)
         registers[self.cval] = newc
 

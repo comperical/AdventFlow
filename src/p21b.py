@@ -177,7 +177,7 @@ class PMachine(FiniteStateMachine):
         #print("Simulator gave: IP={}, regs={}".format(instpt, regs))
         #print("Machine    has: IP={}, regs={}".format(self.instr_ptr, self.registers))
 
-        assert self.instr_ptr == instpt and self.registers == regs
+        #assert self.instr_ptr == instpt and self.registers == regs
 
 
     def s4_program_terminates(self):

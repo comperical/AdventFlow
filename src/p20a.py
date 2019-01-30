@@ -1,3 +1,4 @@
+import sys
 import json
 import copy
 import hashlib
@@ -9,6 +10,8 @@ from collections import Counter
 
 import utility as U
 from finite_state import *
+
+sys.setrecursionlimit(3000)
 
 CARDINAL = { 'N' : -1j, 'S': +1j, 'E' : +1, 'W': -1 }
 
@@ -322,7 +325,7 @@ class PMachine(FiniteStateMachine):
 
     def get_result(self):
         doormap = self.get_doormap_result()
-        return doormap.room_distance_stats()
+        return doormap.room_distance_stats()[0]
 
 
     def get_result_block(self):

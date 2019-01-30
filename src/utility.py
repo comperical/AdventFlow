@@ -120,7 +120,7 @@ def get_problem_codes():
 
 
 def problem_code_okay(pstr):
-    for idx in range(1, 25):
+    for idx in range(1, 26):
         for charcode in ['a', 'b', 'c']:
             if pstr == "p{:02}{}".format(idx, charcode):
                 return True
