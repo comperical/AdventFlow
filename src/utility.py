@@ -94,6 +94,8 @@ def get_diagram_path(pcode, extend):
     return os.path.join(basepath, 'diagram', '{}.{}'.format(pcode, extend))
 
 
+
+
 def write_gv_output(gvtool, gvpath):
     print("Writing to path: {}".format(gvpath))
 
@@ -104,12 +106,26 @@ def write_gv_output(gvtool, gvpath):
     print("Wrote GV output to path {}".format(gvpath))
 
 
+def get_problem_codes():
 
-def check_problem_code(argstr):
+    pardir = os.path.dirname(__file__)
 
+    for file in os.listdir(pardir):
+        if not file.endswith(".py"):
+            continue
+
+        fname = file[:-3]
+        if problem_code_okay(fname):
+            yield fname
+
+
+def problem_code_okay(pstr):
     for idx in range(1, 25):
         for charcode in ['a', 'b', 'c']:
-            if argstr == "p{:02}{}".format(idx, charcode):
-                return argstr
+            if pstr == "p{:02}{}".format(idx, charcode):
+                return True
 
-    assert False, "Invalid problem code {}, format is pXY[a|b|c]".format(argstr)
+    return False
+
+def check_problem_code(argstr):
+    assert problem_code_okay(argstr), "Invalid problem code {}, format is pXY[a|b|c]".format(argstr)

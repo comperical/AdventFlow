@@ -79,8 +79,8 @@ class PMachine(FiniteStateMachine):
 
 
     def external_submit_request(self):
+        pass
         
-
     def s4_pause_new_requests(self):
         pass
 
