@@ -33,7 +33,7 @@ class PMachine(FiniteStateMachine):
         pass
 
     def s2_read_input(self):
-        self.inputdata = read_input_deque()
+        self.inputdata = U.read_input_deque('p02')
 
     def s6_have_another_item(self):
         return len(self.inputdata) > 0

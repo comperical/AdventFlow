@@ -76,7 +76,7 @@ class PMachine(FiniteStateMachine):
                 assert self.is_test
                 self.plants_grow[code] = False
 
-        print(self.plants_grow)
+        #print(self.plants_grow)
 
     def s1_init_machine(self):
 
@@ -101,6 +101,7 @@ class PMachine(FiniteStateMachine):
         minidx = -3 if self.is_test else min(self.curgen)-3
         maxidx = 37 if self.is_test else max(self.curgen)+3
 
+        """
         print("{0: <2}: ".format(self.generation), end='')
 
         for idx in range(minidx, maxidx):
@@ -108,6 +109,7 @@ class PMachine(FiniteStateMachine):
             print(c, end='')
 
         print("")
+        """
 
     def s5_reset_index(self):
         self.curidx = min(self.curgen)-3

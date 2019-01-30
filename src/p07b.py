@@ -70,7 +70,8 @@ class PMachine(FiniteStateMachine):
         self.num_workers = 2 if self.testmode else 5
 
     def get_result(self):
-        return "".join(self.completed)
+        #return "".join(self.completed)
+        return self.clocktime + 1
 
     def s1_init_machine(self):
         
@@ -118,7 +119,7 @@ class PMachine(FiniteStateMachine):
             workers = [wkid for wkid, task in self.worker_task.items() if task == topitem]
             assert len(workers) == 1
 
-            print("Marking task {} complete at time {}, completed by worker {} ".format(topitem, self.clocktime, workers[0]))
+            #print("Marking task {} complete at time {}, completed by worker {} ".format(topitem, self.clocktime, workers[0]))
             self.check_list.extend(self.pre2pst.get(topitem, []))
             #print("Check list is {}".format(self.check_list))
 
@@ -133,7 +134,7 @@ class PMachine(FiniteStateMachine):
     def s6_is_action_ready(self):
         nextitem = self.check_list[0]
         isready = all([prec in self.completed for prec in self.pst2pre.get(nextitem, [])])
-        print("Item {} is ready={} at time {}".format(nextitem, isready, self.clocktime))
+        #print("Item {} is ready={} at time {}".format(nextitem, isready, self.clocktime))
         return all([prec in self.completed for prec in self.pst2pre.get(nextitem, [])])
 
     def s7_add_to_ready_list(self):
@@ -161,7 +162,7 @@ class PMachine(FiniteStateMachine):
         comptime = self.clocktime + 1 + string.ascii_uppercase.find(topitem)
         comptime += 0 if self.testmode else 60
 
-        print("Assigning action {} to worker {}, completing on {}".format(topitem, idler, comptime))
+        #print("Assigning action {} to worker {}, completing on {}".format(topitem, idler, comptime))
 
         self.worker_task[idler] = topitem
         self.completion_sched.setdefault(comptime, [])

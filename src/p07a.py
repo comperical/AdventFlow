@@ -73,18 +73,18 @@ class PMachine(FiniteStateMachine):
             self.allitems.add(req.get_precond())
             self.allitems.add(req.get_pstcond())
 
-            print("{} --> {}".format(req.get_precond(), req.get_pstcond()))
+            #print("{} --> {}".format(req.get_precond(), req.get_pstcond()))
 
-        print("{}".format(self.pre2pst))
-        print("{}".format(self.pst2pre))
-        print("{}".format(self.allitems))
+        #print("{}".format(self.pre2pst))
+        #print("{}".format(self.pst2pre))
+        #print("{}".format(self.allitems))
 
 
     def s2_find_initial_ready(self):
 
         for item in self.allitems:
             if len(self.pst2pre.get(item, [])) == 0:
-                print("Initiall ready item ={}".format(item))
+                #print("Initiall ready item ={}".format(item))
                 self.ready_list.append(item)
 
     def s3_any_ready(self):
@@ -93,7 +93,7 @@ class PMachine(FiniteStateMachine):
     def s4_emit_action(self):
 
         topitem = sorted(self.ready_list)[0]
-        print("emitting action {}".format(topitem))
+        #print("emitting action {}".format(topitem))
 
         self.check_list = deque(self.pre2pst.get(topitem, []))
 

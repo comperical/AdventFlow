@@ -28,7 +28,7 @@ class PMachine(FiniteStateMachine):
         self.xvals = None
         self.yvals = None
 
-        self.serial_number = 57
+        self.serial_number = 2568
 
     def get_result(self):
         
@@ -38,13 +38,8 @@ class PMachine(FiniteStateMachine):
             for ypt in range(1, 301):
                 results.append((xpt, ypt, self.calc_square_total(xpt, ypt)))
 
-
         results = sorted(results, key=lambda x: -x[2])
-
-        print(results[0])
-
-        return results[0]
-
+        return results[0][0:2]
 
     def calc_square_total(self, xpt, ypt, showsquare=False):
 

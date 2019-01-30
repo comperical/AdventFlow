@@ -85,12 +85,15 @@ class PMachine(FiniteStateMachine):
     def get_result(self):
         return max([c for k,c in self.scores.items()])
 
-    def configure(self, players=10, maxmarble=30):
+    def configure(self, players, maxmarble):
         self.num_players = players
         self.max_marble = maxmarble
 
     def s1_init_machine(self):
-        assert self.num_players != None, "You must call configure(..) before running machine"
+        #assert self.num_players != None, "You must call configure(..) before running machine"
+
+        self.num_players = 424
+        self.max_marble = 71482
 
     def s3_is_special_turn(self):
         return self.marble_count % 23 == 0

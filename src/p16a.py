@@ -141,7 +141,7 @@ class PMachine(FiniteStateMachine):
 
             inlist.popleft()
 
-        print("Read {} inputs ".format(len(self.inputs)))
+        # print("Read {} inputs ".format(len(self.inputs)))
 
 
     def s4_have_another_input(self):

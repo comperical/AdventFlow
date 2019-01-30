@@ -56,9 +56,7 @@ class PMachine(FiniteStateMachine):
 
 
     def get_result(self):
-        #return self.curnode.get_meta_sum()
-
-        return self.curnode.get_p2_sum()
+        return self.curnode.get_meta_sum()
 
     def s1_init_machine(self):
         self.curnode = Node(None)

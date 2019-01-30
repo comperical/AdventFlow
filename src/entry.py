@@ -10,7 +10,9 @@ if __name__ == "__main__":
     assert len(sys.argv) >= 3, "Usage entry.py <solve|diagram|run2step|test> pXY ..."
     assert sys.argv[1] in ['solve', 'diagram', 'run2step', 'test']
 
-    pcode = U.check_problem_code(sys.argv[2])
+    pcode = sys.argv[2]
+    print("Pcode is {}".format(pcode))
+    #pcode = U.check_problem_code(pcode)
     pmod = importlib.import_module(pcode)
 
     pmachine = pmod.PMachine()

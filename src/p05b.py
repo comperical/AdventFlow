@@ -55,7 +55,7 @@ class PMachine(FiniteStateMachine):
         self.input_pos = 0
         self.polymers = deque([])
 
-        print("Original length is {}, lenght is {} after removal of {}".format(len(self.org_input), len(self.big_input), self.curprobe))
+        #print("Original length is {}, lenght is {} after removal of {}".format(len(self.org_input), len(self.big_input), self.curprobe))
 
     def s8_have_another_polymer(self):
         return self.input_pos < len(self.big_input)
@@ -84,8 +84,7 @@ class PMachine(FiniteStateMachine):
 
     def s15_log_probe_result(self):
         self.results[self.curprobe] = len(self.polymers)
-        print("result for probe={} is {}".format(self.curprobe, len(self.polymers)))
-
+        #print("result for probe={} is {}".format(self.curprobe, len(self.polymers)))
 
     def s30_success_complete(self):
         pass    
