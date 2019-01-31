@@ -35,7 +35,7 @@ These statistics are obtained by logging the number of visits to each state and
 <br/>
 	
 	
-### Using the Technique
+### Using the Control Flow Technique
 
 To use the control flow technique, first create an object that subclasses `FiniteStateMachine` 
 	in the `finite_state` package.
