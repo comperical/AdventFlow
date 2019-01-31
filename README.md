@@ -158,3 +158,80 @@ Of course, GraphViz is only necessary to create the diagrams.
 The FSM code will run perfectly fine if GV is not installed.
 
 There are no other dependencies in this repo.
+
+### Experience with the Advent of Code Challenge
+
+Overall, I had a good experience solving these problems.
+However, it took much longer than I originally expected.
+This is partly because I am stubborn and didn't want to ask the Internet for help.
+With two exceptions mentioned below, I was able to solve all the problems on my own.
+
+My favorite problems were P20 (A Regular Map) and P17 (Reservoir Research).
+When I initially studied P20, my initial impression was that it was impossible.
+I struggled with it for a while, and finally solved it on my own,
+	which was enormously satisfying.
+P17 was not as hard, but was still a quite elegant problem with a nice solution.
+The P17 solution also created a nice control flow diagram.
+
+I also grudgingly admit that p23 (Experimental Emergency Teleportation) was a good problem.
+I was annoyed with this problem,
+	because it was the one problem I was fundamentally not able to solve: 
+	I had never seen the recursive partitioning technique before.
+But because of this, it expanded my repertoire as a programmer. 
+
+I had mixed feelings about the "battle" problems P15 (Beverage Bandits) 
+	and P24 (Immune System Simulator 20XX).
+On the one hand, they generated good control flow diagrams
+	that do a good job at illustrating the idea(s) of the problems.
+However, P15 in particular had a lot of really tedious points, 
+	and I'm not the only one who complained about this.
+I was able to solve all of the test cases, and part 1 of the problem,
+	with relative ease.
+However, part 2 failed due to some very obscure edge cases, 
+	that I decided not to invest the time to root out: it didn't seem worthwhile.
+
+I also had mixed feelings about the problems that used "ElfCode": 
+	P16 (Chronal Classification), P19 (Go With the Flow), and P21 (Chronal Conversion).
+These are problems where you are asked to simulate a device 
+	that runs an special type of assembly language called ElfCode.
+For P16, you basically just have to make sure that your simulation is correct;
+	that's not too bad.
+For P19 and P21, the computation will run for far too long by default. 
+So to get the right answer, you have to study the ElfCode, determine what it does,
+	and then figure out a computational shortcut.
+For P19 this wasn't too bad, but for P21 it felt really tedious.
+		
+Other than the ones I mentioned, most of the problems didn't feel too hard.	
+There were several nice problems that used standard techniques like breadth-first search (BFS)
+	and Summed-Add Tables.
+	
+	
+### Running the Code
+
+To run all the solutions and check the answers, run:
+
+```
+python3 solve_all.py
+```
+
+This will take about 15 minutes.
+To rebuild all the diagrams, run:
+
+```
+python3 all_diagrams.py
+```
+
+This will run fast.
+To run a particular problem, you can use:
+
+```
+python3 entry.py PCODE solve|diagram|test|run2step [stepcount]
+```
+
+That will run the corresponding action (solve/diagram/test) for the given problem code.
+If you use `run2step`, also include a stepcount.
+
+
+
+
+
