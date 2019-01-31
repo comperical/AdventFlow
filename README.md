@@ -232,7 +232,7 @@ That will run the corresponding action (solve/diagram/test) for the given proble
 If you use `run2step`, also include a stepcount.
 
 
-![Mission Accomplished](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![Mission Accomplished](https://github.com/comperical/AdventFlow/blob/master/diagram/AdventComplete.png)
 
 
 
