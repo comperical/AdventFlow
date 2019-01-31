@@ -46,18 +46,49 @@ The abstract FSM class contains all of the logic about how to move the machine f
 Each state in the FSM corresponds to a method on your new object.
 However, not all methods will become states; this would actually be very inconvenient.
 To mark a method as an FSM state, you must name it according to a naming convention.
-The naming convention is `sIDX__STATENAME`, where IDX is an integer from 0 to 100, and STATENAME
+The naming convention is `sIDX_STATENAME`, where IDX is an integer from 0 to 100, and STATENAME
 	is the name of the state.
-Note the double space between the IDX and the STATENAME.
 It is strongly recommended to use camel case style for the state names. 
-So a couple of good method names are:
+The DSL for specifying the FSM transitions is based on the *acronym* version of the state name.
+Specifically, you split the state name by underscore, take the first character of each resulting token,
+	and capitalize the result.
+Some examples of good state-method names, and corresponding acronym codes, are:
 
-1. `s8_have_more_requests`
-1. `s9_already_have_request`
-1. `s16_is_zero_xboundary`
-1. `s23_have_above_neighbor_info`
+1. `s8_have_more_requests` -- HMR
+1. `s9_already_have_request` -- AHR
+1. `s16_is_zero_xboundary` -- IZX
+1. `s23_have_above_neighbor_info` -- HANI
 
 
+The FSM transitions are specified in the object's constructor using a simple DSL based on JSON
+	and the acronym versions of the state names.
+The JSON object is just a key/value mapping where the key is the acronymized state name, and 
+	the value indicates the outgoing transitions from the state.
+Here is an example:
 
+```python
+    def __init__(self):
+        
+        statemap = """
+        {
+            "HMR" : "F:SC",
+            "AHR" : "T:PRQ",
+            "RIO" : "T:ZGA",
+            "RIT" : "F:IZY",
+            "ZGA" : "PRQ",
+            "PRQ" : "HMR",
+            "IZY" : "F:IZX",
+            "ZYA" : "PRQ",
+            "ZXA" : "PRQ",
+            "IZX" : "F:HLNI",
+            "HLNI" : "F:SLR",
+            "HANI" : "F:SAR",
+            "SLR" : "PRQ",
+            "NBA" : "PRQ"
+        }
+        """
+        
+        FiniteStateMachine.__init__(self, json.loads(statemap))
+```
 
 
