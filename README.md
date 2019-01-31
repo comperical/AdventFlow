@@ -1,6 +1,6 @@
 ## Advent Flow
 
-These are solutions to the 2018 Advent of Code, created by Eric Wastl. 
+These are solutions to the [2018 Advent of Code](https://adventofcode.com/2018), created by Eric Wastl. 
 Thanks to Eric for an enjoyable suite of problems ranging from easy to hard. 
 
 I used these problems as a demonstration tool to showcase my "FlowState" programming technique.
