@@ -148,9 +148,13 @@ and runs the machine until the function returns true.
 	
 ### Dependencies 
 
-The main dependency is [GraphViz](https://www.graphviz.org/).
+The code is written in Python 3.
+
+The main external dependency is [GraphViz](https://www.graphviz.org/).
 This is not a Python dependency; GraphViz should be installed on your system and should be findable on your path.
 To create the diagrams, the FSM code generates a GV file and calls the GraphViz `dot` program as a system call.
 The output is always PNG.
 Of course, GraphViz is only necessary to create the diagrams.
 The FSM code will run perfectly fine if GV is not installed.
+
+There are no other dependencies in this repo.
