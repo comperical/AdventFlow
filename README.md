@@ -130,3 +130,16 @@ It is a quite productive workflow
 	to edit the transition map, rebuild the flow diagram, examine it to detect mistakes, and repeat.
 If you make a mistake specifying the transition codes,
 	you will quickly realize it when you look at the flow diagram.
+	
+	
+### FSM methods
+
+The `FiniteStateMachine` class provides a number of utility methods that can be used to control the machine.
+The meaning of these methods should be intuitively clear.
+
+
+1. `run2_completion` - run the machine until it reaches an `end` state.
+1. `run_one_step` - run a single step of the machine, which can be either a query or an operation.
+1. `run2_step_count` - run the machine until it reaches a specific step count.
+	
+### Dependencies 
