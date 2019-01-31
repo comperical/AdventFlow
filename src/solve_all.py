@@ -26,8 +26,16 @@ if __name__ == "__main__":
     solutions = get_solutions()
     problems = list(U.get_problem_codes())
     solved = []
+    targets = None
+
+    if len(sys.argv) > 1:
+        targets = [int(c) for c in sys.argv[1].split(",")]
+        print("Solving problem targets={}".format(targets))
 
     for solidx, solns in solutions.items():
+        if targets != None and solidx not in targets:
+            continue
+
         for subidx, expect in enumerate(solns):
             pcode = "p{:02d}{}".format(solidx, "a" if subidx == 0 else "b")
             assert pcode in problems, "No problem code found for pcode={}".format(pcode)

@@ -79,8 +79,8 @@ class PMachine(FiniteStateMachine):
 
         print("Got IP binding = {} and {} lines of instructions".format(self.ip_binding, len(self.instructions)))
 
-        for idx, inst in enumerate(self.instructions):
-            print("{} --> {}".format(idx, inst))
+        #for idx, inst in enumerate(self.instructions):
+        #    print("{} --> {}".format(idx, inst))
 
 
 

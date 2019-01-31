@@ -8,6 +8,30 @@ from finite_state import *
 # Re-use function opcodes
 import p16a
 
+
+def dumbfactors(mynumber):
+
+    for f in range(1, mynumber+1):
+        if mynumber % f == 0:
+            yield f
+
+def numpairs(r4):
+
+    """
+    hit = 0
+
+    for idx in range(1, r4+1):
+        for jdx in range(1, r4+1):
+            if idx * jdx == r4:
+                print("got hit i={} * j={} = {}".format(idx, jdx, r4))
+                hit += idx
+
+    return hit
+    """
+
+    return sum(dumbfactors(r4))
+
+
 class Instruction:
 
     def __init__(self, istr):
@@ -37,14 +61,17 @@ class PMachine(FiniteStateMachine):
         statemap = """
         {
             "IIP" : "PT",
-            "PT" : "T:SC"
-
+            "PT" : "T:SC",
+            "SFC" : "T:SSFI"
         }
         """
         
         FiniteStateMachine.__init__(self, json.loads(statemap))
 
         self.registers = [0] * 6
+
+        # This is the hook to change the operation for problem B
+        self.registers[0] = self.get_initial_register()
 
         self.ip_binding = 1
 
@@ -55,9 +82,11 @@ class PMachine(FiniteStateMachine):
         self.is_test = False
 
 
-    def get_result(self):
-        return self.registers[0]
+    def get_initial_register(self):
+        return 0
 
+    def get_result(self):
+        return self.final_result
 
     def s1_init_machine(self):
 
@@ -77,14 +106,16 @@ class PMachine(FiniteStateMachine):
 
         print("Got IP binding = {} and {} lines of instructions".format(self.ip_binding, len(self.instructions)))
 
-        for idx, inst in enumerate(self.instructions):
-            print("{} --> {}".format(idx, inst))
-
+        #for idx, inst in enumerate(self.instructions):
+        #    print("{} --> {}".format(idx, inst))
 
 
     def s4_program_terminates(self):
         return self.instr_ptr < 0 or self.instr_ptr >= len(self.instructions)
 
+
+    def s5_smart_fast_check(self):
+        return self.step_count > 1e6 and self.instr_ptr == 8
 
     def s6_copy_iptr2_register(self):
         self.registers[self.ip_binding] = self.instr_ptr
@@ -108,12 +139,32 @@ class PMachine(FiniteStateMachine):
         self.instr_ptr += 1
 
 
+    def s25_set_smart_fast_info(self):
+
+        print("Registers are {}, setting smart fast".format(self.registers))
+
+        #assert self.registers[0] == 0, "Expected nothing in register 0, got registers={}".format(self.registers)
+        r4 = self.registers[4]
+
+        npairs = numpairs(r4)
+        print("Got value of {} for npair r4={}".format(npairs, r4))
+        self.final_result = npairs
+
     def s30_success_complete(self):
         pass
 
 
 def run_tests():
     
+    assert list(dumbfactors(8)) == [1, 2, 4, 8]
+    assert list(dumbfactors(9)) == [1, 3, 9]
+    assert list(dumbfactors(12)) == [1, 2, 3, 4, 6, 12]
+    assert list(dumbfactors(25)) == [1, 5, 25]
+    assert list(dumbfactors(100)) == [1, 2, 4, 5, 10, 20, 25, 50, 100]
+
+    assert numpairs(970) == 1764
+
+
     pmachine = PMachine()
     pmachine.is_test = True
     pmachine.run2_completion()
