@@ -141,5 +141,9 @@ The meaning of these methods should be intuitively clear.
 1. `run2_completion` - run the machine until it reaches an `end` state.
 1. `run_one_step` - run a single step of the machine, which can be either a query or an operation.
 1. `run2_step_count` - run the machine until it reaches a specific step count.
+1. `run_until` - this method takes a function argument, typically a `lambda`, 
+and runs the machine until the function returns true.
+1. `get_state` - this will return the *full* state-method name (eg `s14_run_the_thing`) of the current state.
+1. `get_state_type` - this will return the state type as a string: one of `op/query/end`. 
 	
 ### Dependencies 
