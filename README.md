@@ -113,6 +113,16 @@ Since there is only one possible transition for an operation state,
 	you often don't even need to specify it explicitly,
 	if you organize the state-methods cleverly such that 
 	the default transition is the correct one.
+	
+There is also a third state type: the `end` or completion states. 
+These are shown as diamonds in the flow diagrams.
+Completion states should have *no* entry in the state transition map;
+	specifying a transition for a completion state is an inspection-time error.
+However, you *do* need to write a state-method for the completion states.
+The FSM driver detects completion states
+	by finding method names that end in `_complete` or `_end`.
+Important note: completion states will never run,
+	so there is not much point in putting any actual code into them.
 
 This may seem confusing, but it is quite easy to learn.
 Also, the diagram extraction technique introduces a new step in your programming workflow.
