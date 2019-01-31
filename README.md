@@ -67,6 +67,8 @@ The JSON object is just a key/value mapping where the key is the acronymized sta
 Here is an example:
 
 ```python
+class PMachine(FiniteStateMachine):
+
     def __init__(self):
         
         statemap = """
@@ -89,6 +91,32 @@ Here is an example:
         """
         
         FiniteStateMachine.__init__(self, json.loads(statemap))
+        
+        # ... additional constructor information for specific machine
 ```
 
+There are two types of states illustrated in the transition map.
+For `op` (operation) states, there is a single outgoing transition.
+For example, the state `ZGA` always leads directly to `PRQ`. 
+For `query` states, there are two possibilities, depending on whether the state-method returns True or False.
+For example, the state `RIT` has a transition code `F:IZY`, 
+	which means that if the return value is False, the machine will transition to state `IZY`.
 
+This might seem underspecified. 
+Where does the state `RIT` transition on a True result?
+Since it is not specified, the FSM driver infers the "default" transition to be 
+	the state-method with the next highest index.
+As we can see by looking at the code, the next state-method after `RIT` is `ZGA` (ZeroGeoAnswer).
+
+The default transitions are also used for the operation states.
+Since there is only one possible transition for an operation state,
+	you often don't even need to specify it explicitly,
+	if you organize the state-methods cleverly such that 
+	the default transition is the correct one.
+
+This may seem confusing, but it is quite easy to learn.
+Also, the diagram extraction technique introduces a new step in your programming workflow.
+It is a quite productive workflow 
+	to edit the transition map, rebuild the flow diagram, examine it to detect mistakes, and repeat.
+If you make a mistake specifying the transition codes,
+	you will quickly realize it when you look at the flow diagram.
