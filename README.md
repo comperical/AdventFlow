@@ -133,7 +133,7 @@ However, you *do* need to write a state-method for the completion states.
 The FSM driver detects completion states
 	by finding method names that end in `_complete` or `_end`.
 Important note: completion states will never run,
-	so there is not much point in putting any actual code into them.
+	so there is no point in putting any actual code in them.
 
 This may seem confusing, but it is quite easy to learn.
 Also, the diagram extraction technique introduces a new step in your programming workflow.
