@@ -1,7 +1,7 @@
 
 ## Quick Glance
 
-This is a set of problem solutions written in Python written in a special programming style
+This is a set of problem solutions written in Python using a special programming style
 	based on the concept of Finite State Machines.
 This allows us to automatically extract control flow diagrams from the source code.
 
@@ -13,7 +13,7 @@ Example: [this diagram](diagram/p17a.png) was extracted from the PMachine
 These are solutions to the [2018 Advent of Code](https://adventofcode.com/2018), created by Eric Wastl. 
 Thanks to Eric for an enjoyable suite of problems ranging from easy to hard. 
 
-I used these problems as a demonstration tool to showcase my "FlowState" programming technique.
+I used these problems as a way to demonstrate my "FlowState" programming technique.
 This technique requires the programmer to decompose a computation in terms of a series of 
 	named steps, which are methods on a special type of object.
 The programmer also specifies the control flow relationships between the steps, 
