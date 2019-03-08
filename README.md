@@ -174,10 +174,6 @@ There are no other dependencies in this repo.
 ### Experience with the Advent of Code Challenge
 
 Overall, I had a good experience solving these problems.
-However, it took much longer than I originally expected.
-This is partly because I am stubborn and didn't want to ask the Internet for help.
-With two exceptions mentioned below, I was able to solve all the problems on my own.
-
 My favorite problems were P20 (A Regular Map) and P17 (Reservoir Research).
 When I initially studied P20, my initial impression was that it was impossible.
 I struggled with it for a while, and finally solved it on my own,
