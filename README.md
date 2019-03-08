@@ -185,7 +185,7 @@ I struggled with it for a while, and finally solved it on my own,
 P17 was not as hard, but was still a quite elegant problem with a nice solution.
 The P17 solution also created a nice control flow diagram.
 
-I also grudgingly admit that p23 (Experimental Emergency Teleportation) was a good problem.
+I also grudgingly admit that P23 (Experimental Emergency Teleportation) was a good problem.
 I was annoyed with this problem,
 	because it was the one problem I was fundamentally not able to solve: 
 	I had never seen the recursive partitioning technique before.
