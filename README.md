@@ -75,7 +75,7 @@ The FSM transitions are specified in the object's constructor using a simple DSL
 	and the acronym versions of the state names.
 The JSON object is just a key/value mapping where the key is the acronymized state name, and 
 	the value indicates the outgoing transitions from the state.
-Here is an example (taken from [p22a.py](src/p22a.py)):
+Here is an example (taken from [p22a.py](src/p22a.py), which produces [p22a.png](diagram/p22a.png)):
 
 ```python
 class PMachine(FiniteStateMachine):
