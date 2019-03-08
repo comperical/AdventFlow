@@ -4,7 +4,8 @@
 This is a set of problem solutions written in Python written in a special programming style
 	based on the concept of Finite State Machines.
 This allows us to automatically extract control flow diagrams from the source code.
-Example [this diagram](diagram/p17a.png) was extracted from the PMachine
+
+Example: [this diagram](diagram/p17a.png) was extracted from the PMachine
 	object in [this Python file](src/p17a.py).
 
 ## Advent Flow
