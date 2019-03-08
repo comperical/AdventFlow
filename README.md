@@ -59,7 +59,7 @@ However, not all methods will become states; this would actually be very inconve
 To mark a method as an FSM state, you must name it according to a naming convention.
 The naming convention is `sIDX_STATENAME`, where IDX is an integer from 0 to 100, and STATENAME
 	is the name of the state.
-It is strongly recommended to use camel case style for the state names. 
+It is strongly recommended to use snake case style for the state names. 
 The DSL for specifying the FSM transitions is based on the *acronym* version of the state name.
 Specifically, you split the state name by underscore, take the first character of each resulting token,
 	and capitalize the result.
