@@ -1,3 +1,12 @@
+
+## Quick Glance
+
+This is a set of problem solutions written in Python written in a special programming style
+	based on the concept of Finite State Machines.
+This allows us to automatically extract control flow diagrams from the source code.
+Example [this diagram](diagram/p17a.png) was extracted from the PMachine
+	object in [this Python file](src/p17a.py).
+
 ## Advent Flow
 
 These are solutions to the [2018 Advent of Code](https://adventofcode.com/2018), created by Eric Wastl. 
@@ -36,6 +45,7 @@ These statistics are obtained by logging the number of visits to each state and
 	
 	
 ### Using the Control Flow Technique
+
 
 To use the control flow technique, first create an object that subclasses `FiniteStateMachine` 
 	in the `finite_state` package.
