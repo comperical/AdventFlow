@@ -117,7 +117,8 @@ This might seem underspecified.
 Where does the state `RIT` transition on a True result?
 Since it is not specified, the FSM driver infers the "default" transition to be 
 	the state-method with the next highest index.
-As we can see by looking at the code, the next state-method after `RIT` is `ZGA` (ZeroGeoAnswer).
+As we can see by looking at [the code](src/p22a.py), 
+	the next state-method after `RIT` is `ZGA` (ZeroGeoAnswer).
 
 The default transitions are also used for the operation states.
 Since there is only one possible transition for an operation state,
