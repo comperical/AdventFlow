@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import os, re, copy
 import sys
+import json
 
 from diagram_util import GraphVizTool
 
@@ -28,6 +29,7 @@ def basic2_camel(basicname):
 	fclist = [tok[0].upper() + tok[1:] for tok in basicname.split("_")]
 	return "".join(fclist)
 	
+# TODO: !! this actually is weird, what if I have a state PlanIsComplete
 def is_end_state_name(functionref):
 	return any([get_basic_name(functionref).endswith(suffstr) for suffstr in ["_complete", "_end"]])
 
@@ -58,7 +60,7 @@ class FiniteStateMachine:
 			
 		self.state_list = []
 		self.acro2_func_map = {}
-		self.name2_func_map = {}	
+		self.name2_func_map = {}
 		
 		self.transition_map = {}
 		
@@ -89,8 +91,8 @@ class FiniteStateMachine:
 			
 			default_next = None if idx >= len(self.state_list)-1 else self.state_list[idx+1]
 			
-			#if default_next is not None:
-			#	print("For state {}, default next is {}".format(get_acro_name(statefunc), get_acro_name(default_next)))
+			if default_next is not None:
+				print("For state {}, default next is {}".format(get_acro_name(statefunc), get_acro_name(default_next)))
 			
 			for codeword in [get_acro_name(statefunc), get_basic_name(statefunc)]:
 				if codeword in smap:
@@ -111,6 +113,8 @@ class FiniteStateMachine:
 			return "op"
 
 		self.state_type_map = { sfunc : statetype(trns) for sfunc, trns in self.transition_map.items() }
+
+		print(f"State type map is {self.state_type_map}")
 				
 			
 	def interpret_transition_code(self, strcode, default_next):
@@ -243,7 +247,7 @@ class FiniteStateMachine:
 		for (sfunc, maxvisit) in self.max_visit_map.items():
 			assert self.state_visit_count[sfunc] <= maxvisit, "Visited state {} too many times".format(get_basic_name(sfunc))		
 		
-		assert statetype is not "end", "Attempt to run end state {}, should check for complete before calling".format(self.cur_state_func.__name__)
+		assert statetype != "end", "Attempt to run end state {}, should check for complete before calling".format(self.cur_state_func.__name__)
 		
 		myreturn = self.cur_state_func()
 		
